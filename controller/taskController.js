@@ -56,7 +56,11 @@ exports.updateTask = async (req, res) => {
 
     const isValidField = keys.every((field) => existingKey.includes(field))
 
-    if (!isValidField) throw new Error('unknown field')
+    if (!isValidField) {
+        const error = new Error('unknown field')
+        error.status = 404
+        throw error
+    }
 
     try {
 

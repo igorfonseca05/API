@@ -24,12 +24,11 @@ Content-Type: application/json
 ###
 
 ###
-PATCH  http://localhost:5000/tasks/6839eceddab306c13dc66773
+PATCH  http://localhost:5000/tasks/683a3c38bf7560a9265e1619
 Content-Type: application/json
 
 {
-    "description": "Wash my hands",
-    "isCompleted": false
+    "descripti": "Wash my hands"
 }
 ###
 
