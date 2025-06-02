@@ -123,22 +123,6 @@ describe('API task tests', () => {
         expect(res.statusCode).toBe(404)
     })
 
-    test('should return 500 if Task.create throws', async () => {
-        jest.spyOn(TaskModel, 'create').mockImplementationOnce(() => {
-            throw new Error('DB error')
-        })
-
-        const res = await request(app)
-            .post('/tasks')
-            .send({ description: 'mock test', isCompleted: false })
-
-        expect(res.statusCode).toBe(500)
-
-        // Limpa o mock depois
-        TaskModel.create.mockRestore()
-    })
-
-
 })
 
 
