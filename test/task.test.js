@@ -3,6 +3,8 @@ const request = require('supertest')
 const { app, mongoose } = require('../app')
 const TaskModel = require('../model/taskModel')
 
+const { dbError } = require('../dbTest/db')
+
 const id = new mongoose.Types.ObjectId()
 const fakeId = new mongoose.Types.ObjectId()
 
@@ -16,6 +18,8 @@ beforeEach(async () => {
     await TaskModel.deleteMany({})
     await TaskModel.insertOne(task)
 })
+
+
 
 
 describe('API task tests', () => {
@@ -118,6 +122,23 @@ describe('API task tests', () => {
             .delete(`/tasks/${fakeId}`)
         expect(res.statusCode).toBe(404)
     })
+
+    test('should return 500 if Task.create throws', async () => {
+        jest.spyOn(TaskModel, 'create').mockImplementationOnce(() => {
+            throw new Error('DB error')
+        })
+
+        const res = await request(app)
+            .post('/tasks')
+            .send({ description: 'mock test', isCompleted: false })
+
+        expect(res.statusCode).toBe(500)
+
+        // Limpa o mock depois
+        TaskModel.create.mockRestore()
+    })
+
+
 })
 
 
