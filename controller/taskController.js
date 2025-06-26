@@ -2,7 +2,6 @@ const TaskModel = require('../model/taskModel')
 
 exports.createTask = async (req, res) => {
     try {
-
         const task = new TaskModel(req.body)
         await task.save()
 

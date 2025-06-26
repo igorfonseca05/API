@@ -14,12 +14,13 @@ Content-Type: application/json
 ###
 
 ###
-POST http://localhost:5000/tasks
+POST http://localhost:4004/tasks
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWQ4MzYwNWRkNGM5N2U5YWJkZDE0NCIsImlhdCI6MTc1MDk1ODk0NCwiZXhwIjoxNzUxNTYzNzQ0fQ.03AaM3r6ENsj0yb7eDxEhnYHtJlM0OpZjXHehZ6VonI
 
 {
-    "description": "Do the dishes",
-    "isCompleted": false
+    "description": "to turn off the faucet",
+    "isCompleted": true
 }
 ###
 
